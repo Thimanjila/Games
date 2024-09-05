@@ -1,14 +1,14 @@
-const mongoose = require("./server/src/config/database.js");
-const app = require("./server/src/app");
-const port = process.env.PORT || 3001;
+import axios from "axios";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
-mongoose.connection.on("connected", function () {
-  app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-  });
-});
+axios.defaults.baseURL = "http://localhost:3000/api/";
 
-mongoose.connection.on("error", function (err) {
-  console.error("Mongoose connection error:", err);
-  process.exit(1);
-});
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
